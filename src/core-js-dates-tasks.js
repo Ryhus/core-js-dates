@@ -164,8 +164,19 @@ function isDateInPeriod(date, period) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h12',
+    timeZone: 'UTC',
+  };
+  const dateFormater = new Intl.DateTimeFormat('en-US', options);
+  return dateFormater.format(new Date(date));
 }
 
 /**
